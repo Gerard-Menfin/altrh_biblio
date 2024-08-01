@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-2" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_home') }}"> Biblio </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="fa fa-user"></i> {{ app.user.userIdentifier }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="{{ path('app_logout') }}">
+                        <i class="fa fa-sign-out-alt"></i>
+                    </a>
+                </li>
+                {% else %}
+                    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">
+                        <i class="fa fa-sign-in-alt"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_register') }}">
+                        <i class="fa fa-user-plus"></i>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if is_granted("ROLE_ADMIN") %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Gestion
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_admin_livre_index') }}">Livres</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_livre_new') }}">Ajouter un livre</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        
+                        <li><a class="dropdown-item" href="{{ path('app_admin_abonne_index') }}">Abonnés</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_abonne_new') }}">Ajouter un abonné</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        
+                        <li><a class="dropdown-item" href="{{ path('app_admin_emprunt_index') }}">Emprunts</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_emprunt_new') }}">Ajouter un emprunt</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+
+
+                {% if is_granted("ROLE_BIBLIO") %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Bibliothécaires
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a class="dropdown-item" href="{{ path('app_admin_emprunt_index') }}">Emprunts</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_admin_emprunt_new') }}">Ajouter un emprunt</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">
+                        Disabled
+
+                    </a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">
+                    Search
+
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>

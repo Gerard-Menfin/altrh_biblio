@@ -1,0 +1,38 @@
+{% extends 'admin_admin_base.html.twig' %}
+
+{% block title %}Gestion de la bibliothèque{% endblock %}
+
+{% block body %}
+<div class="d-flex flex-wrap">
+
+    <div class="card col-4 mx-2">
+        <h3 class="card-header">Livres</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Livres : <strong class="float-right">{{ livres|length }}</strong></li>
+            <li class="list-group-item">Empruntés : <strong class="float-right"></strong></li>
+            <li class="list-group-item">En rayon  : <strong class="float-right"></strong></li>
+            <li class="list-group-item">Le plus en retard : <strong class="float-right"></strong></li>
+            <li class="list-group-item">Le plus emprunté : 
+            <li class="list-group-item">Le moins emprunté : 
+        </ul>
+        <div class="card-footer">
+            <a class="card-link" href="{{ path("app_admin_livre_index") }}"><i class="fa fa-list-alt"></i> Liste</a>
+            <a class="card-link float-right" href="{{ path("app_admin_livre_new") }}"><i class="fa fa-plus-square"></i> Ajouter</a>
+        </div>
+    </div>
+
+
+
+    <div class="card col-4 mx-2">
+        <h3 class="card-header">Emprunts</h3>
+        <ul class="list-group">
+            <li class="list-group-item">Nombre d'emprunts : <strong class="float-right">{{ emprunts|length }}</strong></li>
+            <li class="list-group-item">Emprunts en cours : <strong class="float-right"></strong></li>
+        </ul>
+        <div class="card-footer">
+            <a class="card-link" href="{{ path("app_admin_emprunt_index") }}"><i class="fa fa-list-alt"></i> Liste</a>
+            <a class="card-link float-right" href="{{ path("app_admin_emprunt_new") }}"><i class="fa fa-plus-square"></i> Ajouter</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
